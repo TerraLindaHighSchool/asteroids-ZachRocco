@@ -36,6 +36,7 @@ public class Rocket extends SmoothMover
         checkKeys();
         move();
         reloadDelayCount++;
+        checkCollision();
     }
     
     /**
@@ -89,4 +90,13 @@ public class Rocket extends SmoothMover
         }
     }
     
+    private void checkCollision()
+    {
+        if(getOneIntersectingObject(Asteroid.class) != null) 
+        {
+           World world = getWorld();
+           world.addObject(new Explosion(),getX(),getY());
+           world.removeObject(this);
+        }
+    }
 }
