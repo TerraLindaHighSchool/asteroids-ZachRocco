@@ -8,6 +8,7 @@ import greenfoot.*;
  */
 public class Bullet extends SmoothMover
 {
+    private static final int pointsToAdd = 10;
     /** The damage this bullet will deal */
     private static final int damage = 16;
     
@@ -55,6 +56,7 @@ public class Bullet extends SmoothMover
         Asteroid asteroid = (Asteroid) getOneIntersectingObject(Asteroid.class);
         if (asteroid != null)
         {
+            ((Space) getWorld()).updateScore(10);
             getWorld().removeObject(this);
             asteroid.hit(damage);
         }
